@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <points id="100" x="1" y="2"/>
+    <points id="200" x="4" y="-3.5"/>
+    <points id="300" x="10" y="8"/>
+    
+    <figures id="1000" name="name1"/>
+    <figures id="2000" name="name2"/>
+    
+    
+    <vertexes figure_id="1000" point_id="100" />
+    <vertexes figure_id="1000" point_id="200" />
+    
+</dataset>
