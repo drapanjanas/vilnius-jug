@@ -17,7 +17,13 @@
 	        <groupId>lt.jug.vilnius.osgi</groupId>
 	        <artifactId>datamodel</artifactId>
 	        <version>${project.version}</version>
-	    </dependency>	
+	    </dependency>
+	    
+	    <dependency>
+	        <groupId>lt.jug.vilnius.osgi</groupId>
+	        <artifactId>services</artifactId>
+	        <version>${project.version}</version>
+	    </dependency>		
 
 		<!-- Bean Validation Dependencies -->
 
@@ -99,6 +105,12 @@
 			<scope>compile</scope>
 		</dependency>
 
+		<dependency>
+		<groupId>com.google.guava</groupId>
+	<artifactId>guava</artifactId>
+	</dependency>
+		
+		
 		<!-- View Dependencies -->
 		<dependency>
 			<groupId>taglibs</groupId>
@@ -106,6 +118,38 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
+		<!-- Servlet -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp.jstl</groupId>
+            <artifactId>jstl-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>jstl-impl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>el-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
 
 
 		<!-- Test Dependencies -->
@@ -123,12 +167,11 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<scope>runtime</scope>
+
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
@@ -143,7 +186,7 @@
 					<artifactId>jmxri</artifactId>
 				</exclusion>
 			</exclusions>
-			<scope>runtime</scope>
+
 		</dependency>
 
 

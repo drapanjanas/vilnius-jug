@@ -25,7 +25,6 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
   </head>
 
   <body>
@@ -39,33 +38,37 @@
     </div>
 
     <div class="container">
-    	<form:form commandName="inbox" action="${contextPath}/selectInbox" method="POST" >
-		  	<legend>Please login to inbox</legend>
-		  	<div class="control-group">
-    			<label>Address</label>
-  				<div class="controls">
-  					<form:input path="address" placeholder="Type something..." />
-    				<form:errors path="address" class="help-inline error"/>
-  				</div>
-			</div>
-  			<div class="form-actions">
-  				<button type="submit" class="btn btn-primary">Login</button>
-			</div>
-		</form:form>  
-
+    	<h3>Inbox: ${currentInbox.address}</h3>
+    	<ul class="nav nav-tabs">
+  			<li id="inbox-folder"><a href="${contextPath}/mail/inbox">Inbox</a></li>
+  			<li id="drafts-folder"><a href="${contextPath}/mail/drafts">Drafts</a></li>
+  			<li id="sent-folder"><a href="${contextPath}/mail/sent">Sent</a></li>
+  			<li id="received-folder"><a href="${contextPath}/mail/received">Received</a></li>
+  			<li id="deleted-folder"><a href="${contextPath}/mail/deleted">Deleted</a></li>
+		</ul>
+		<table class="table table-striped hover">
+  			<tbody>
+  				<c:forEach var="message" items="${messages}">
+  					<tr>
+  						<td>${mesage.displayAddress}</td>
+  						<td>${mesage.content.subject}</td>
+  					</tr>
+  				</c:forEach>
+  			</tbody>
+  		</table>
+  		<div class="form-actions">
+  			<a class="btn btn-primary" href="${contextPath}/mail/compose" >Compose</a>
+		</div>
+		
     </div> <!-- /container -->
 
     
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="${contextPath}/resources/js/bootstrap.js"></script>
 	<script>
-		$(function () {
-			$('.control-group').each(function() {
-				if ($(this).find('span.error').length != 0) {
-					$(this).addClass('error');
-				}
-			})	
-		})
+		$(function(){
+			$('#${folder}-folder').addClass("active");
+		});
 	</script>
   </body>
 </html>

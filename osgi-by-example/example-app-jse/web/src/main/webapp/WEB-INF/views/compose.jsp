@@ -6,7 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Home</title>
+    <title>New Message</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -39,17 +39,18 @@
     </div>
 
     <div class="container">
-    	<form:form commandName="inbox" action="${contextPath}/selectInbox" method="POST" >
-		  	<legend>Please login to inbox</legend>
-		  	<div class="control-group">
-    			<label>Address</label>
-  				<div class="controls">
-  					<form:input path="address" placeholder="Type something..." />
-    				<form:errors path="address" class="help-inline error"/>
-  				</div>
-			</div>
+    	<form:form commandName="newMessage" method="POST" >
+		  	<legend>Compose new message</legend>
+  			<label>To:</label>
+  			<form:input path="to" placeholder="Recipient..." />
+  			<label>Subject:</label>
+  			<form:input path="subject" placeholder="Your subject..." />
+  			<label>Message text:</label>
+  			<form:input path="body" placeholder="Your text..." />
   			<div class="form-actions">
-  				<button type="submit" class="btn btn-primary">Login</button>
+  				<form:button type="submit" name="action" value="send" class="btn btn-primary">Send</form:button>
+  				<form:button type="submit" name="action" value="save" class="btn">Save as draft</form:button>
+  				<a class="btn" href="${contextPath}/mail/inbox">&lt;&lt; Back</a>
 			</div>
 		</form:form>  
 
@@ -58,14 +59,6 @@
     
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="${contextPath}/resources/js/bootstrap.js"></script>
-	<script>
-		$(function () {
-			$('.control-group').each(function() {
-				if ($(this).find('span.error').length != 0) {
-					$(this).addClass('error');
-				}
-			})	
-		})
-	</script>
+
   </body>
 </html>
