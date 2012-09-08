@@ -1,7 +1,6 @@
 package lt.jug.vilnius.osgi.example.app.model;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -15,7 +14,7 @@ import javax.persistence.InheritanceType;
 public class RecipientMessage extends Message{
 		
 	@Enumerated(EnumType.STRING)
-	@Column(name = "recipient_status", nullable = false)
+	@Column(name = "recipient_status")
 	private RecipientStatus recipientStatus;
 		
 	public enum RecipientStatus {
@@ -28,5 +27,10 @@ public class RecipientMessage extends Message{
 
 	public void setReceipientStatus(RecipientStatus recipientStatus) {
 		this.recipientStatus = recipientStatus;
+	}
+
+	@Override
+	public String getDisplayAddress() {
+		return this.getContent().getFrom();
 	}
 } 

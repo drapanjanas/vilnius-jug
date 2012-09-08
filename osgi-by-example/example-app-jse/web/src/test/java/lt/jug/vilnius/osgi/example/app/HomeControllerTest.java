@@ -1,7 +1,7 @@
 package lt.jug.vilnius.osgi.example.app;
 
 import junit.framework.Assert;
-import lt.jug.vilnius.osgi.example.app.HomeController;
+import lt.jug.vilnius.osgi.example.app.controller.HomeController;
 
 import org.junit.Test;
 import org.springframework.ui.ExtendedModelMap;

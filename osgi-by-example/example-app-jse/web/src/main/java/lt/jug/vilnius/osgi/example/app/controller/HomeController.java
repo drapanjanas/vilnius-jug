@@ -1,4 +1,4 @@
-package lt.jug.vilnius.osgi.example.app;
+package lt.jug.vilnius.osgi.example.app.controller;
 
 import javax.validation.Valid;
 

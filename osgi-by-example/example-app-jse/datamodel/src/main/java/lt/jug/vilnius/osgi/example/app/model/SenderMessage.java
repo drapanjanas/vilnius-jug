@@ -19,7 +19,7 @@ import javax.persistence.InheritanceType;
 public class SenderMessage extends Message {
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name = "sender_status", nullable = false)
+	@Column(name = "sender_status")
 	private SenderStatus senderStatus;
 		
 	public enum SenderStatus {
@@ -32,5 +32,10 @@ public class SenderMessage extends Message {
 
 	public void setSenderStatus(SenderStatus senderStatus) {
 		this.senderStatus = senderStatus;
+	}
+	
+	@Override
+	public String getDisplayAddress() {
+		return this.getContent().getTo();
 	}
 } 

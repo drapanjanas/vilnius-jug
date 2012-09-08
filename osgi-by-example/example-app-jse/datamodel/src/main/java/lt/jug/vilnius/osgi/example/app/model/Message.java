@@ -64,4 +64,6 @@ public abstract class Message {
 		this.content = content;
 	}
 	
+	public abstract String getDisplayAddress();
+	
 } 

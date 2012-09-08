@@ -50,8 +50,8 @@
   			<tbody>
   				<c:forEach var="message" items="${messages}">
   					<tr>
-  						<td>${mesage.displayAddress}</td>
-  						<td>${mesage.content.subject}</td>
+  						<td>${message.displayAddress}</td>
+  						<td>${message.content.subject}</td>
   					</tr>
   				</c:forEach>
   			</tbody>
