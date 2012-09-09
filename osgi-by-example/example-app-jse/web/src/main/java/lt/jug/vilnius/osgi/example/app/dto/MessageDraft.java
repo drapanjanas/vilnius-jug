@@ -1,10 +1,19 @@
 package lt.jug.vilnius.osgi.example.app.dto;
 
-public class NewMessage {
+public class MessageDraft {
+	
+	private Long id;
 	private String to;
 	private String subject;
 	private String body;
 	
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getTo() {
 		return to;
 	}

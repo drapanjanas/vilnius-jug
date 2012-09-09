@@ -43,23 +43,34 @@
   			<li id="inbox-folder"><a href="${contextPath}/mail/inbox">Inbox</a></li>
   			<li id="drafts-folder"><a href="${contextPath}/mail/drafts">Drafts</a></li>
   			<li id="sent-folder"><a href="${contextPath}/mail/sent">Sent</a></li>
-  			<li id="received-folder"><a href="${contextPath}/mail/received">Received</a></li>
   			<li id="deleted-folder"><a href="${contextPath}/mail/deleted">Deleted</a></li>
 		</ul>
-		<table class="table table-striped hover">
+		<form:form id="message-list" commandName="messageSelection" method="POST"> 
+  			<c:if test="${!empty messages}">
+  			<div class="btn-group">
+  				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    				Action <span class="caret"></span>
+  				</a>
+  				<ul class="dropdown-menu">
+    				<li><a id="action-delete">Delete selected</a></li>
+  				</ul>
+			</div> <br/>
+			<table class="table table-striped table-hover">
   			<tbody>
   				<c:forEach var="message" items="${messages}">
-  					<tr>
-  						<td>${message.displayAddress}</td>
-  						<td>${message.content.subject}</td>
+  					<tr id="${message.id}">
+  						<td><form:checkbox path="selected" value="${message.id}"/>
+  						<td class="messageLink">${message.displayAddress}</td>
+  						<td class="messageLink">${message.content.subject}</td>
   					</tr>
   				</c:forEach>
   			</tbody>
-  		</table>
+  			</table>
+  			</c:if>
   		<div class="form-actions">
   			<a class="btn btn-primary" href="${contextPath}/mail/compose" >Compose</a>
 		</div>
-		
+		</form:form>
     </div> <!-- /container -->
 
     
@@ -68,6 +79,15 @@
 	<script>
 		$(function(){
 			$('#${folder}-folder').addClass("active");
+			$('.messageLink').click(function() {
+				var id = $(this).parent().attr("id");
+				window.location = "${contextPath}/mail/${folder}/" + id
+			})
+			
+			$('#action-delete').click(function () {
+				var input = $("<input>").attr("type", "hidden").attr("name", "action").val("delete");
+				$('#message-list').append($(input)).submit()
+			});
 		});
 	</script>
   </body>

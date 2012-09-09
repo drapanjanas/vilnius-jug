@@ -1,7 +1,8 @@
 package lt.jug.vilnius.osgi.example.app.services;
 
-import lt.jug.vilnius.osgi.example.app.dto.NewMessage;
+import java.util.List;
+
 
 public interface MailService {
-	void sendMessage(String fromAddress, NewMessage message);
+	void sendMessage(Long messageId, List<String> to);
 }

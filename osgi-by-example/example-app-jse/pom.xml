@@ -38,7 +38,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>4.0.0.GA</version>
+			<version>4.3.0.Final</version>
 			<scope>compile</scope>
 		</dependency>
 
@@ -47,7 +47,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>3.6.0.Final</version>
+			<version>4.1.7.Final</version>
 			<scope>compile</scope>
 		</dependency>
 
@@ -64,6 +64,13 @@
 			<scope>compile</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+            
+		
 		<!-- Spring Dependencies -->
 
 		<dependency>

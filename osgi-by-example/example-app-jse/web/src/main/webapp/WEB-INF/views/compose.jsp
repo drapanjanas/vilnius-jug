@@ -39,14 +39,15 @@
     </div>
 
     <div class="container">
-    	<form:form commandName="newMessage" method="POST" >
+    	<form:form commandName="newMessage" action="${contextPath}/mail/compose"method="POST" >
+		  	<form:hidden path="id"/>
 		  	<legend>Compose new message</legend>
   			<label>To:</label>
   			<form:input path="to" placeholder="Recipient..." />
   			<label>Subject:</label>
   			<form:input path="subject" placeholder="Your subject..." />
   			<label>Message text:</label>
-  			<form:input path="body" placeholder="Your text..." />
+  			<form:textarea path="body" placeholder="Your text..." />
   			<div class="form-actions">
   				<form:button type="submit" name="action" value="send" class="btn btn-primary">Send</form:button>
   				<form:button type="submit" name="action" value="save" class="btn">Save as draft</form:button>
