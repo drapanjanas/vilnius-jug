@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.google.common.base.Joiner;
 
 @Service("mailServiceSoap")
-public class MailServiceImpl implements lt.vilnius_jug.girenko.examples.services.mailservice.MailService {
+public class MailServiceSoapImpl implements lt.vilnius_jug.girenko.examples.services.mailservice.MailService {
 
 	@Autowired
 	private MailService mailService;

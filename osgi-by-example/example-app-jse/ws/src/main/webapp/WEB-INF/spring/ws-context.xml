@@ -18,5 +18,6 @@
 	<context:component-scan base-package="lt.jug.vilnius.osgi.example.app.ws.impl" />
 	
 	<jaxws:endpoint address="/MailService" implementor="#mailServiceSoap"></jaxws:endpoint>
+	<jaxws:endpoint address="/InboxService" implementor="#inboxServiceSoap"></jaxws:endpoint>
 	
 </beans>
