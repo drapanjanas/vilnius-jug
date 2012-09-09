@@ -18,11 +18,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "messages")
-@SequenceGenerator(name="seq_message_id", initialValue=1, allocationSize=100)
 @DiscriminatorColumn(name="type")
 public abstract class Message {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq_message_id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
 	@OneToOne
