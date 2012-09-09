@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://vilnius-jug.lt/girenko/examples/services/InboxService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="InboxService" targetNamespace="http://vilnius-jug.lt/girenko/examples/services/InboxService/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://vilnius-jug.lt/girenko/examples/services/InboxService/">
+      <xsd:element name="getMessageList">
+        <xsd:complexType>
+          <xsd:sequence>
+          	<xsd:element name="inboxAddress" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+          	<xsd:element name="folder" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getMessageListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="messageId " type="xsd:string" maxOccurs="unbounded" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getMessage">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="inboxAddress" type="xsd:string"
+      				maxOccurs="1" minOccurs="1">
+      			</xsd:element>
+      			<xsd:element name="messageId" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getMessageResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="message" type="tns:Message"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="Message">
+      	<xsd:sequence>
+      		<xsd:element name="from" type="xsd:string"></xsd:element>
+      		<xsd:element name="to" type="xsd:string"></xsd:element>
+      		<xsd:element name="subject" type="xsd:string"></xsd:element>
+      		<xsd:element name="body" type="xsd:string"></xsd:element>
+      		<xsd:element name="status" type="tns:MessageStatus" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="transmissionUid" type="xsd:string"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    
+      <xsd:simpleType name="MessageStatus">
+      	<xsd:restriction base="xsd:string">
+      		<xsd:enumeration value="DRAFT"></xsd:enumeration>
+      		<xsd:enumeration value="SENT"></xsd:enumeration>
+      		<xsd:enumeration value="RECEIVED"></xsd:enumeration>
+      		<xsd:enumeration value="READ"></xsd:enumeration>
+      		<xsd:enumeration value="ACKNOWLEDGED"></xsd:enumeration>
+      	</xsd:restriction>
+      </xsd:simpleType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getMessageListRequest">
+    <wsdl:part element="tns:getMessageList" name="request"/>
+  </wsdl:message>
+  <wsdl:message name="getMessageListResponse">
+    <wsdl:part element="tns:getMessageListResponse" name="response"/>
+  </wsdl:message>
+  <wsdl:message name="getMessageRequest">
+  	<wsdl:part name="parameters" element="tns:getMessage"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMessageResponse">
+  	<wsdl:part name="parameters" element="tns:getMessageResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="InboxService">
+    <wsdl:operation name="getMessageList">
+      <wsdl:input message="tns:getMessageListRequest"/>
+      <wsdl:output message="tns:getMessageListResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getMessage">
+    	<wsdl:input message="tns:getMessageRequest"></wsdl:input>
+    	<wsdl:output message="tns:getMessageResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="InboxServiceSOAP" type="tns:InboxService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getMessageList">
+      <soap:operation soapAction="http://vilnius-jug.lt/girenko/examples/services/InboxService/getMessageList"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="InboxService">
+    <wsdl:port binding="tns:InboxServiceSOAP" name="InboxServiceSOAP">
+      <soap:address location="http://www.example.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

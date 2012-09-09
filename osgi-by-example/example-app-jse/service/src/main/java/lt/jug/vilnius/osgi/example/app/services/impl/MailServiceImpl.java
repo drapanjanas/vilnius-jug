@@ -17,7 +17,7 @@ public class MailServiceImpl implements MailService {
 	
 	@Override
 	@Transactional
-	public void sendMessage(String inboxAddress, Long messageId, List<String> to) {
-		messageDao.transmitMessage(inboxAddress, messageId, to);
+	public String sendMessage(String inboxAddress, Long messageId, List<String> to) {
+		return messageDao.transmitMessage(inboxAddress, messageId, to);
 	}
 }

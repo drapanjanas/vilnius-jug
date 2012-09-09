@@ -16,6 +16,7 @@
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<cxf.version>2.6.1</cxf.version>
 		<jetty.version>6.1.4</jetty.version>
 		<spring.version>3.1.1.RELEASE</spring.version>
 		<slf4j.version>1.5.10</slf4j.version>
@@ -69,8 +70,18 @@
 			<artifactId>commons-collections</artifactId>
 			<version>3.2.1</version>
 		</dependency>
-            
-		
+        
+        <!-- CXF -->    
+		<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-frontend-jaxws</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-transports-http</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
 		<!-- Spring Dependencies -->
 
 		<dependency>
@@ -84,6 +95,12 @@
 					<artifactId>commons-logging</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>			
 		</dependency>
 
 		<dependency>

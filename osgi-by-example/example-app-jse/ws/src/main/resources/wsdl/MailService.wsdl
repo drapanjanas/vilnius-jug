@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://vilnius-jug.lt/girenko/examples/services/MailService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MailService" targetNamespace="http://vilnius-jug.lt/girenko/examples/services/MailService/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://vilnius-jug.lt/girenko/examples/services/MailService/">
+      <xsd:element name="sendMessage">
+        <xsd:complexType>
+          <xsd:sequence>
+          	<xsd:element name="from" type="xsd:string" maxOccurs="1"
+          		minOccurs="1" />
+          	<xsd:element name="to" type="tns:RecipientList"
+          		maxOccurs="1" minOccurs="1">
+          	</xsd:element>
+          	<xsd:element name="subject" type="xsd:string"
+          		maxOccurs="1" minOccurs="0">
+          	</xsd:element>
+          	<xsd:element name="body" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="sendMessageResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="transmissionUid " type="xsd:string" maxOccurs="1" minOccurs="1"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="RecipientList">
+      	<xsd:sequence>
+      		<xsd:element name="recipient" type="xsd:string" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="sendMessageRequest">
+    <wsdl:part element="tns:sendMessage" name="request"/>
+  </wsdl:message>
+  <wsdl:message name="sendMessageResponse">
+    <wsdl:part element="tns:sendMessageResponse" name="response"/>
+  </wsdl:message>
+  <wsdl:message name="sendMessageFault">
+  </wsdl:message>
+  <wsdl:portType name="MailService">
+    <wsdl:operation name="sendMessage">
+      <wsdl:input message="tns:sendMessageRequest"/>
+      <wsdl:output message="tns:sendMessageResponse"/>
+        </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MailServiceSOAP" type="tns:MailService">
+  	<soap:binding style="document"
+  		transport="http://schemas.xmlsoap.org/soap/http" />
+  	<wsdl:operation name="sendMessage">
+  		<soap:operation
+  			soapAction="http://vilnius-jug.lt/girenko/examples/services/MailService/sendMessage" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MailService">
+    <wsdl:port binding="tns:MailServiceSOAP" name="MailServiceSOAP">
+      <soap:address location="http://localhost:8181/cxf/MailService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
