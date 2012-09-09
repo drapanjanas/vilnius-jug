@@ -1,7 +1,6 @@
 package lt.jug.vilnius.osgi.example.app.model;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -37,5 +36,10 @@ public class SenderMessage extends Message {
 	@Override
 	public String getDisplayAddress() {
 		return this.getContent().getTo();
+	}
+
+	@Override
+	public boolean isUnread() {
+		return false;
 	}
 } 

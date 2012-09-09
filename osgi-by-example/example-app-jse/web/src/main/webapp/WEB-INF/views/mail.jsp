@@ -59,9 +59,19 @@
   			<tbody>
   				<c:forEach var="message" items="${messages}">
   					<tr id="${message.id}">
-  						<td><form:checkbox path="selected" value="${message.id}"/>
-  						<td class="messageLink">${message.displayAddress}</td>
-  						<td class="messageLink">${message.content.subject}</td>
+  						<c:choose>
+  							<c:when test="${message.unread}">
+  								<td><form:checkbox path="selected" value="${message.id}"/>
+  								<td class="messageLink"><strong>${message.displayAddress}</strong></td>
+  								<td class="messageLink"><strong>${message.content.subject}</strong></td>
+  							</c:when>
+  							<c:otherwise>
+  								<td><form:checkbox path="selected" value="${message.id}"/>
+  								<td class="messageLink">${message.displayAddress}</td>
+  								<td class="messageLink">${message.content.subject}</td>
+  							</c:otherwise>
+  						</c:choose>
+  						
   					</tr>
   				</c:forEach>
   			</tbody>

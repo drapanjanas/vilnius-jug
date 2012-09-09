@@ -61,6 +61,8 @@ public class MailController {
 			@PathVariable String folder, @PathVariable Long messageId, Model model) {
 		Message message = inboxService.getMessage(inbox.getAddress(), messageId);
 		
+		model.addAttribute("folder", folder);
+		
 		if (message instanceof SenderMessage) {
 			SenderMessage senderMessage = (SenderMessage) message;
 			if (senderMessage.getSenderStatus() == SenderStatus.DRAFT) {
@@ -73,8 +75,9 @@ public class MailController {
 				return "compose";
 			}
 		}
-		model.addAttribute("newMessage", new MessageDraft());
-		return "compose";
+		model.addAttribute("message", message);
+		inboxService.markAsRead(inbox.getAddress(), message.getId());
+		return "message";
 	}
 		
 	@RequestMapping(value = "/mail/compose", method = RequestMethod.GET)
@@ -88,7 +91,7 @@ public class MailController {
 			@ModelAttribute("newMessage") MessageDraft message) {
 		logger.info("Sending message");
 		Long messageId = inboxService.saveMessage(inbox.getAddress(), message, "drafts");
-		mailService.sendMessage(messageId, Lists.newArrayList(message.getTo()));
+		mailService.sendMessage(inbox.getAddress(), messageId, Lists.newArrayList(message.getTo().replace(" ","").split(",")));
 		return "redirect:sent";
 	}
 	
@@ -96,6 +99,7 @@ public class MailController {
 	public String save (@ModelAttribute("currentInbox") Inbox inbox, 
 			@ModelAttribute("newMessage") MessageDraft message) {
 		logger.info("Saving message");
+		inboxService.saveMessage(inbox.getAddress(), message, "drafts");
 		return "redirect:drafts";
 	}
 }

@@ -14,7 +14,8 @@ public interface InboxService {
 	Long  saveMessage(String address, MessageDraft message, String folder);
 
 	Message getMessage(String address, Long messageId);
+	
+	void markAsRead(String address, Long messageId);
 
 	void deleteMessages(String address, String folder, List<Long> selected);
-	
 }

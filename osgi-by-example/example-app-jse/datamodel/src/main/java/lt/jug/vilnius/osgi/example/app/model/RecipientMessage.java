@@ -33,4 +33,9 @@ public class RecipientMessage extends Message{
 	public String getDisplayAddress() {
 		return this.getContent().getFrom();
 	}
+
+	@Override
+	public boolean isUnread() {
+		return getRecipientStatus() == RecipientStatus.RECEIVED;
+	}
 } 

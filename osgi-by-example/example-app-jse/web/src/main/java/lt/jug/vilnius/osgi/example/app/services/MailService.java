@@ -4,5 +4,5 @@ import java.util.List;
 
 
 public interface MailService {
-	void sendMessage(Long messageId, List<String> to);
+	void sendMessage(String inboxAddress, Long messageId, List<String> to);
 }

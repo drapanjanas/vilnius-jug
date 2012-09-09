@@ -2,18 +2,18 @@ package lt.jug.vilnius.osgi.example.app.services.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
+import lt.jug.vilnius.osgi.example.app.dao.InboxDao;
+import lt.jug.vilnius.osgi.example.app.dao.MessageDao;
 import lt.jug.vilnius.osgi.example.app.dto.MessageDraft;
 import lt.jug.vilnius.osgi.example.app.model.Inbox;
-import lt.jug.vilnius.osgi.example.app.model.Inbox.Status;
 import lt.jug.vilnius.osgi.example.app.model.Message;
 import lt.jug.vilnius.osgi.example.app.model.MessageContent;
+import lt.jug.vilnius.osgi.example.app.model.RecipientMessage.RecipientStatus;
 import lt.jug.vilnius.osgi.example.app.model.SenderMessage;
 import lt.jug.vilnius.osgi.example.app.model.SenderMessage.SenderStatus;
 import lt.jug.vilnius.osgi.example.app.services.InboxService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,68 +22,44 @@ import com.google.common.base.Preconditions;
 @Service("inboxService")
 public class InboxServiceImpl implements InboxService {
 
-	@PersistenceContext
-	private EntityManager entityManager;
+	@Autowired
+	private InboxDao inboxDao;
+	
+	@Autowired
+	private MessageDao messageDao;
 
 	@Override
 	@Transactional
 	public Inbox createInbox(String address) {
-		Inbox inbox = entityManager.find(Inbox.class, address);
-		if (inbox != null) {
-			return inbox;
-		}
-		inbox = new Inbox();
-		inbox.setAddress(address);
-		inbox.setStatus(Status.ACTIVE);
-		entityManager.persist(inbox);
-		return inbox;
+		return inboxDao.createInbox(address);
 	}
 
 	@Override
 	@Transactional
 	public List<Message> showFolderContents(String address, String folder) {
-		return entityManager
-				.createQuery(
-						"from Message where inbox.id=:address and folder=:folder",
-						Message.class).setParameter("address", address)
-				.setParameter("folder", folder).getResultList();
+		return messageDao.findByInboxAndFolder(address, folder);
 	}
 
 	@Override
 	@Transactional
 	public Long saveMessage(String address, MessageDraft messageDto,
 			String folder) {
-		Inbox inbox = entityManager.find(Inbox.class, address);
 		if (messageDto.getId() != null) {
-			SenderMessage message = entityManager
-					.createQuery(
-							"from SenderMessage where inbox.id=:address and id=:id",
-							SenderMessage.class)
-					.setParameter("address", address)
-					.setParameter("id", messageDto.getId()).getSingleResult();
+			SenderMessage message = (SenderMessage) messageDao.getMessage(address, messageDto.getId());
 			Preconditions.checkState(
 					message.getSenderStatus() != SenderStatus.SENT,
 					"Can not modify sent messages");
-
-			MessageContent content = message.getContent();
+			MessageContent content = new MessageContent();
+			content.setFrom(address);
 			copyContent(messageDto, content);
-			content = entityManager.merge(content);
-			message.setFolder(folder);
-			message = entityManager.merge(message);
+			message = messageDao.updateMessageContent(address, messageDto.getId(), content);
 			return message.getId();
 
 		} else {
 			MessageContent content = new MessageContent();
 			content.setFrom(address);
 			copyContent(messageDto, content);
-			entityManager.persist(content);
-
-			SenderMessage message = new SenderMessage();
-			message.setContent(content);
-			message.setFolder(folder);
-			message.setInbox(inbox);
-			message.setSenderStatus(SenderStatus.DRAFT);
-			entityManager.persist(message);
+			SenderMessage message = messageDao.createNewMessage(address, "drafts", content);
 			return message.getId();
 		}
 
@@ -98,23 +74,20 @@ public class InboxServiceImpl implements InboxService {
 	@Override
 	@Transactional
 	public Message getMessage(String address, Long messageId) {
-		return entityManager
-				.createQuery(
-						"from Message where inbox.id=:address and  id=:messageId",
-						Message.class).setParameter("address", address)
-				.setParameter("messageId", messageId).getSingleResult();
+		return messageDao.getMessage(address, messageId);
 	}
 
 	@Override
 	@Transactional
 	public void deleteMessages(String address, String folder,
 			List<Long> selected) {
-		entityManager
-				.createQuery(
-						"delete from Message where id IN (:selection) and inbox.id = :address and folder=:folder")
-						.setParameter("selection", selected)
-				.setParameter("address", address)
-				.setParameter("folder", folder).executeUpdate();
+		messageDao.deleteMessages(address, selected);
+	}
+
+	@Override
+	@Transactional
+	public void markAsRead(String address, Long messageId) {
+		messageDao.updateRecipientMessageStatus(address, messageId, RecipientStatus.READ);
 	}
 
 }

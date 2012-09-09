@@ -1,20 +1,10 @@
 package lt.jug.vilnius.osgi.example.app.model;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.Embeddable;
 
-@Entity
-@Table(name = "message_contents")
-@SequenceGenerator(name="seq_message_content_id", initialValue=1, allocationSize=100)
+@Embeddable
 public class MessageContent {
-	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq_message_content_id")
-	private Long id;
 	
 	@Column(name = "subject")
 	private String subject;
@@ -28,14 +18,6 @@ public class MessageContent {
 	@Column(name = "to_value")
 	private String to;
 	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public String getSubject() {
 		return subject;
 	}
