@@ -11,4 +11,5 @@
 
 	<context:component-scan base-package="lt.jug.vilnius.osgi.example.app.services" />
 	
+	<tx:annotation-driven/>
 </beans>

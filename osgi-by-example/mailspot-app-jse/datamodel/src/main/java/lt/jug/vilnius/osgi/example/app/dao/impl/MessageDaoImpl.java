@@ -16,6 +16,7 @@ import lt.jug.vilnius.osgi.example.app.model.RecipientMessage.RecipientStatus;
 import lt.jug.vilnius.osgi.example.app.model.SenderMessage;
 import lt.jug.vilnius.osgi.example.app.model.SenderMessage.SenderStatus;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -24,25 +25,26 @@ import com.google.common.base.Preconditions;
 @Repository("messageDao")
 public class MessageDaoImpl implements MessageDao {
 	
-	@PersistenceContext
-	private EntityManager entityManager;
+	@Autowired
+	private SessionFactory sessionFactory;
 	
 	@Autowired
 	private InboxDao inboxDao;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Message> findByInboxAndFolder(String inboxAddress, String folder) {
-		return entityManager.createQuery("from Message where inbox.id=:address and folder=:folder", Message.class)
+		return sessionFactory.getCurrentSession().createQuery("from Message where inbox.id=:address and folder=:folder")
 				.setParameter("address", inboxAddress)
-				.setParameter("folder", folder).getResultList();
+				.setParameter("folder", folder).list();
 	}
 
 	@Override
 	public Message getMessage(String inboxAddress, Long messageId) {
-		return entityManager.createQuery(
-				"from Message where inbox.id=:address and id=:id", Message.class)
+		return (Message) sessionFactory.getCurrentSession().createQuery(
+				"from Message where inbox.id=:address and id=:id")
 				.setParameter("address", inboxAddress)
-				.setParameter("id", messageId).getSingleResult();
+				.setParameter("id", messageId).uniqueResult();
 	}
 
 	@Override
@@ -53,7 +55,7 @@ public class MessageDaoImpl implements MessageDao {
 		message.setInbox(inbox);
 		message.setFolder(folder);
 		message.setSenderStatus(SenderStatus.DRAFT);
-		entityManager.persist(message);
+		sessionFactory.getCurrentSession().save(message);
 		return message;
 	}
 	
@@ -66,7 +68,7 @@ public class MessageDaoImpl implements MessageDao {
 		source.setSenderStatus(SenderStatus.SENT);
 		source.setFolder("sent");
 		source.setTransmissionUid(transmissionUid);
-		source = entityManager.merge(source);
+		sessionFactory.getCurrentSession().update(source);
 		for (String destinationAddress : destinationAddresses) {
 			RecipientMessage recipientMessage = new RecipientMessage();
 			recipientMessage.setContent(source.getContent());
@@ -74,7 +76,7 @@ public class MessageDaoImpl implements MessageDao {
 			recipientMessage.setReceipientStatus(RecipientStatus.RECEIVED);
 			recipientMessage.setInbox(inboxDao.findByAddress(destinationAddress));
 			recipientMessage.setTransmissionUid(transmissionUid);
-			entityManager.persist(recipientMessage);
+			sessionFactory.getCurrentSession().save(recipientMessage);
 		}
 		return transmissionUid;
 	}
@@ -86,27 +88,27 @@ public class MessageDaoImpl implements MessageDao {
 		
 		SenderMessage senderMessage = (SenderMessage) message;
 		senderMessage.setContent(content);
-		senderMessage = entityManager.merge(senderMessage);
+		sessionFactory.getCurrentSession().update(senderMessage);
 		return senderMessage;
 	}
 
 	@Override
 	public void deleteMessages(String inboxAddress, List<Long> idList) {
 		// delete deleted permanently
-		entityManager.createQuery(
+		sessionFactory.getCurrentSession().createQuery(
 				"delete from Message where id IN (:selection) and inbox.id = :address and folder = 'deleted'")
-				.setParameter("selection", idList)
+				.setParameterList("selection", idList)
 		.setParameter("address", inboxAddress).executeUpdate();
 		// move other to deleted folder
-		entityManager.createQuery(
+		sessionFactory.getCurrentSession().createQuery(
 				"update Message set folder= 'deleted' where id IN (:selection) and inbox.id = :address and folder != 'deleted'")
-				.setParameter("selection", idList)
+				.setParameterList("selection", idList)
 		.setParameter("address", inboxAddress).executeUpdate();
 	}
 
 	@Override
 	public void updateRecipientMessageStatus(String inboxAddress, Long messageId, RecipientStatus newStatus ) {
-		entityManager.createQuery(
+		sessionFactory.getCurrentSession().createQuery(
 				"update RecipientMessage set recipientStatus = :newStatus where id = :messageId and inbox.id = :address")
 				.setParameter("messageId", messageId)
 				.setParameter("newStatus", newStatus)

@@ -17,6 +17,8 @@
 		<bundle dependency="true">mvn:org.apache.servicemix.specs/org.apache.servicemix.specs.jsr303-api-1.0.0/2.0.0</bundle>
 		<bundle dependency="true">mvn:org.jsoup/com.springsource.org.jsoup/1.5.2</bundle>
 		
+			 <bundle dependency="true">mvn:joda-time/joda-time/1.6.2</bundle>
+		
 	        <bundle>mvn:org.hibernate.common/com.springsource.org.hibernate.annotations.common/4.1.0.Final</bundle>
 	        <bundle>mvn:org.hibernate/com.springsource.org.hibernate.ejb/4.1.0.Final</bundle>
 	        <bundle>mvn:org.hibernate/com.springsource.org.hibernate/4.1.0.Final</bundle>
@@ -30,8 +32,8 @@
 	        <bundle dependency="true">mvn:org.apache.commons/com.springsource.org.apache.commons.logging/1.1.1</bundle>
 	        <bundle dependency="true">mvn:javax.jms/com.springsource.javax.jms/1.1.0</bundle>
 	        <!-- <bundle dependency="true">mvn:javax.xml.stream/com.springsource.javax.xml.stream/1.0.1</bundle>-->
-	        <bundle dependency="true">mvn:javax.servlet/javax.servlet/3.0.0.v201103241009</bundle>
-	        <bundle dependency="true">mvn:javax.portlet/com.springsource.javax.portlet/2.0.0.v20110525</bundle>
+
+
 
 	        <bundle>mvn:org.springframework/org.springframework.aop/3.1.1.RELEASE</bundle>
 	        <bundle>mvn:org.springframework/org.springframework.asm/3.1.1.RELEASE</bundle>
@@ -47,7 +49,6 @@
 	        <bundle>mvn:org.springframework/org.springframework.transaction/3.1.1.RELEASE</bundle>
 	        <bundle>mvn:org.springframework/org.springframework.web/3.1.1.RELEASE</bundle>
 	        <bundle>mvn:org.springframework/org.springframework.web.servlet/3.1.1.RELEASE</bundle>
-	        <bundle>mvn:org.springframework/org.springframework.web.portlet/3.1.1.RELEASE</bundle>
 	        <bundle>mvn:org.aopalliance/com.springsource.org.aopalliance/1.0.0</bundle>
 
 	</feature>	
@@ -66,7 +67,6 @@
 	        <bundle>mvn:org.apache.commons/com.springsource.org.apache.commons.dbcp/1.2.2.osgi</bundle>
 	</feature>
     
-
 	<feature name="jdbc-drivers-mysql">
 	        <bundle>mvn:mysql/mysql-connector-java/5.1.18</bundle>
 	</feature>
@@ -75,4 +75,10 @@
                 <bundle>mvn:javax.servlet/com.springsource.javax.servlet/2.5.0</bundle>
         </feature>
 
+	<feature name="mailspot-datamodel" version="1.0.0-SNAPSHOT">
+	    <bundle dependency="true">mvn:com.google.guava/guava/13.0</bundle>
+	    
+	    <bundle>mvn:lt.jug.vilnius.mailspot.osgi/datamodel/1.0.0-SNAPSHOT</bundle>
+	</feature>
+	
 </features>

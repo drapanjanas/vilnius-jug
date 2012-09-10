@@ -138,6 +138,7 @@
 							lt.jug.vilnius.osgi.example.app.dto
 						</Export-Package>
 						<Private-Package>lt.jug.vilnius.osgi.example.app.dao.impl</Private-Package>
+						<Meta-Persistence> </Meta-Persistence>
 					</instructions>
 				</configuration>
 			</plugin>
