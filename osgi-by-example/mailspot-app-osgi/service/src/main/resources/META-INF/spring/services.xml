@@ -9,7 +9,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd" default-autowire="byName">
 
-	<context:component-scan base-package="lt.jug.vilnius.osgi.example.app.services" />
+	<context:component-scan base-package="lt.jug.vilnius.osgi.example.app.services.impl" />
 	
 	<tx:annotation-driven/>
 

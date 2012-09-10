@@ -38,6 +38,11 @@
 		    <artifactId>datamodel</artifactId>
 		    <version>${project.version}</version>
 		</dependency>
+		<dependency>
+		    <groupId>lt.jug.vilnius.mailspot.osgi</groupId>
+		    <artifactId>services</artifactId>
+		    <version>${project.version}</version>
+		</dependency>
   	</dependencies>
     
     <build>
