@@ -1,35 +1,34 @@
 package lt.jug.vilnius.osgi.example.app.dao.impl;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import lt.jug.vilnius.osgi.example.app.dao.InboxDao;
 import lt.jug.vilnius.osgi.example.app.model.Inbox;
 import lt.jug.vilnius.osgi.example.app.model.Inbox.Status;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository("inboxDao")
 public class InboxDaoImpl implements InboxDao{
 			
-	@PersistenceContext
-	private EntityManager entityManager;
+	@Autowired
+	private SessionFactory sessionFactory;
 	
 	@Override
 	public Inbox findByAddress(String address) {
-		return entityManager.find(Inbox.class, address);
+		return (Inbox) sessionFactory.getCurrentSession().get(Inbox.class, address);
 	}
 
 	@Override
 	public Inbox createInbox(String address) {
-		Inbox inbox = entityManager.find(Inbox.class, address);
+		Inbox inbox = findByAddress(address);
 		if (inbox != null) {
 			return inbox;
 		}
 		inbox = new Inbox();
 		inbox.setAddress(address);
 		inbox.setStatus(Status.ACTIVE);
-		entityManager.persist(inbox);
+		sessionFactory.getCurrentSession().save(inbox);
 		return inbox;
 	}
 }

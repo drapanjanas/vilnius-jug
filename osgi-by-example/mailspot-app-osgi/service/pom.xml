@@ -14,7 +14,7 @@
 	<dependencies>
 
 	   	<dependency>
-	        <groupId>lt.jug.vilnius.osgi</groupId>
+	        <groupId>lt.jug.vilnius.mailspot.osgi</groupId>
 	        <artifactId>datamodel</artifactId>
 	        <version>${project.version}</version>
 	    </dependency>
@@ -33,13 +33,7 @@
 			</exclusions>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<type>jar</type>
-			<scope>test</scope>
-		</dependency>
-
+		
 		<!-- Test Dependencies -->
 		<dependency>
 			<groupId>junit</groupId>

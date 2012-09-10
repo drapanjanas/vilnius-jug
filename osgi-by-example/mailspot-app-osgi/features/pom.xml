@@ -38,32 +38,6 @@
 		    <artifactId>datamodel</artifactId>
 		    <version>${project.version}</version>
 		</dependency>
-		
-		<dependency>
-    		<groupId>org.hibernate</groupId>
-    		<artifactId>com.springsource.org.hibernate.ejb</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>commons-collections</groupId>
-			<artifactId>commons-collections</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-		</dependency>
-		
   	</dependencies>
     
     <build>

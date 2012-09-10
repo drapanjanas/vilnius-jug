@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:osgi="http://www.springframework.org/schema/osgi"
+       xmlns:osgix="http://www.springframework.org/schema/osgi-compendium"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/osgi
+       http://www.springframework.org/schema/osgi/spring-osgi.xsd
+       http://www.springframework.org/schema/osgi-compendium                                    
+       http://www.springframework.org/schema/osgi-compendium/spring-osgi-compendium.xsd">
+
+    <osgi:service ref="messageDao" interface="lt.jug.vilnius.osgi.example.app.dao.MessageDao"/>    
+    <osgi:service ref="inboxDao" interface="lt.jug.vilnius.osgi.example.app.dao.InboxDao"/>
+    
+    <osgi:service ref="transactionManager" interface="org.springframework.transaction.PlatformTransactionManager">
+    	<osgi:service-properties>
+    		<entry key="dataSourceName" value="mailspot" />
+    	</osgi:service-properties>
+    </osgi:service>
+        
+    <osgix:cm-properties id="cmProperties" persistent-id="lt.jug.vilnius.mailspot" />
+    
+    <!-- placeholder configurer -->
+    <context:property-placeholder properties-ref="cmProperties" />   
+</beans>

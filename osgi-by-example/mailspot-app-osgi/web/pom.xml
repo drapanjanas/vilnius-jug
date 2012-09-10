@@ -14,44 +14,18 @@
 	<dependencies>
 
 	    <dependency>
-	        <groupId>lt.jug.vilnius.osgi</groupId>
+	        <groupId>lt.jug.vilnius.mailspot.osgi</groupId>
 	        <artifactId>datamodel</artifactId>
 	        <version>${project.version}</version>
 	    </dependency>
 	    
 	    <dependency>
-	        <groupId>lt.jug.vilnius.osgi</groupId>
+	        <groupId>lt.jug.vilnius.mailspot.osgi</groupId>
 	        <artifactId>services</artifactId>
 	        <version>${project.version}</version>
 	    </dependency>		
 
-	    
-	     <dependency>
-                <groupId>javax.transaction</groupId>
-                <artifactId>jta</artifactId>
-                <version>1.1</version>
-            </dependency>
-		<!-- Bean Validation Dependencies -->
-
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<scope>compile</scope>
-		</dependency>
-
-		<!-- JPA Persistence Dependencies -->
-
-		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-		</dependency>
-
-
-		<dependency>
-			<groupId>commons-collections</groupId>
-			<artifactId>commons-collections</artifactId>
-		</dependency>
-
+	    	     
 		<!-- Spring Dependencies -->
 
 		<dependency>
@@ -70,6 +44,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
@@ -83,27 +58,17 @@
 			<type>jar</type>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- DB Dependencies -->
-
-		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>commons-pool</groupId>
-			<artifactId>commons-pool</artifactId>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-
-		<dependency>
-		<groupId>com.google.guava</groupId>
-	<artifactId>guava</artifactId>
-	</dependency>
 		
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.6</version>
+		</dependency>		
 		
 		<!-- View Dependencies -->
 		<dependency>
