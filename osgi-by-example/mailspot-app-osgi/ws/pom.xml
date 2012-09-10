@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>ws</artifactId>
-	<packaging>war</packaging>
+	<packaging>bundle</packaging>
 	<name>mailspot-app-osgi-ws</name>
 
 	<parent>
@@ -18,16 +18,10 @@
 	        <version>${project.version}</version>
 	    </dependency>		
 	    
-   		<dependency>
-	        <groupId>lt.jug.vilnius.osgi</groupId>
-	        <artifactId>datamodel</artifactId>
-	        <version>${project.version}</version>
-	    </dependency>
-	    
 		<dependency>
-		<groupId>com.google.guava</groupId>
-	<artifactId>guava</artifactId>
-	</dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
    		
 	    <!-- Spring Dependencies -->
 
@@ -102,33 +96,8 @@
 	</dependencies>
 
 	<build>
-		<finalName>example-app-jse-web</finalName>
+		<finalName>example-app-osgi-ws</finalName>
 		<plugins>
-
-			<!-- Plugin to run and test through maven -->
-			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>7.6.5.v20120716</version>
-				<configuration>
-					<scanIntervalSeconds>3</scanIntervalSeconds>
-					<connectors>
-   						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                			<port>8181</port>
-            			</connector>
-          			</connectors>					
-				</configuration>
-			</plugin>
-
-			<!-- Tomcat plugin for embedded tomcat -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>tomcat-maven-plugin</artifactId>
-				<version>1.1</version>
-				<configuration>
-					<path>/${project.build.finalName}</path>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.apache.cxf</groupId>
 				<artifactId>cxf-codegen-plugin</artifactId>
@@ -154,6 +123,23 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.3.6</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                        <Export-Package></Export-Package>
+                        <Private-Package>
+                            	lt.jug.vilnius.osgi.example.app.ws.impl,
+                            	lt.vilnius_jug.girenko.examples.services.inboxservice,
+                            	lt.vilnius_jug.girenko.examples.services.mailservice
+                        </Private-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
 		</plugins>
 		<pluginManagement>
 			<plugins>

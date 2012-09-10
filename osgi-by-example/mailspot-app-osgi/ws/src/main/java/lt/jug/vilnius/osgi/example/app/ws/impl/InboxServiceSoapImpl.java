@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 
-@Service("inboxServiceSoap")
+
 public class InboxServiceSoapImpl implements lt.vilnius_jug.girenko.examples.services.inboxservice.InboxService {
 	
-	@Autowired
+
 	public InboxService inboxService;
 	
 	@Override
@@ -51,4 +51,8 @@ public class InboxServiceSoapImpl implements lt.vilnius_jug.girenko.examples.ser
 		return response;
 	}
 
+	public void setInboxService(InboxService inboxService) {
+		this.inboxService = inboxService;
+	}
+	
 }

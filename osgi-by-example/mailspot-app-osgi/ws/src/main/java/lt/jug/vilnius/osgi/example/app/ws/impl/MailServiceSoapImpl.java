@@ -10,13 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.google.common.base.Joiner;
 
-@Service("mailServiceSoap")
 public class MailServiceSoapImpl implements lt.vilnius_jug.girenko.examples.services.mailservice.MailService {
 
-	@Autowired
 	private MailService mailService;
 	
-	@Autowired
 	private InboxService inboxService;
 		
 	@Override
@@ -29,4 +26,11 @@ public class MailServiceSoapImpl implements lt.vilnius_jug.girenko.examples.serv
 		return mailService.sendMessage(from, messageId, to.getRecipient());
 	}
 
+	public void setMailService(MailService mailService) {
+		this.mailService = mailService;
+	}
+
+	public void setInboxService(InboxService inboxService) {
+		this.inboxService = inboxService;
+	}
 }
