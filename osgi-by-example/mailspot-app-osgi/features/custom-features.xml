@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="LocalRepository">
+	<feature name="jpa-hibernate4" version="4.1.0.Final">
+	        <bundle dependency="true">mvn:org.antlr/com.springsource.antlr/2.7.7</bundle>
+	        <bundle dependency="true">mvn:com.fasterxml/com.springsource.com.fasterxml.classmate/0.5.4</bundle>
+	        <bundle dependency="true">mvn:org.jboss.javassist/com.springsource.javassist/3.15.0.GA</bundle>
+	        <!-- <bundle dependency="true">mvn:javax.xml.bind/com.springsource.javax.xml.bind/2.2.0</bundle>-->
+	        <bundle dependency="true">mvn:org.jboss/com.springsource.org.jboss.jandex/1.0.3.Final</bundle>
+	        <bundle dependency="true">mvn:org.apache.ant/com.springsource.org.apache.tools.ant/1.8.1</bundle>
+		<bundle dependency="true">mvn:org.jboss.logging/com.springsource.org.jboss.logging/3.1.0.CR2</bundle>
+		<bundle dependency="true">mvn:org.jboss.logmanager/com.springsource.org.jboss.logmanager/1.2.0.GA</bundle>
+	        <bundle dependency="true">mvn:org.dom4j/com.springsource.org.dom4j/1.6.1</bundle>
+	        <bundle dependency="true">mvn:org.objectweb.asm/com.springsource.org.objectweb.asm/1.5.3</bundle>
+	        <bundle dependency="true">mvn:net.sourceforge.cglib/com.springsource.net.sf.cglib/2.2.0</bundle>
+		<bundle dependency="true">mvn:org.apache.commons/com.springsource.org.apache.commons.collections/3.2.1</bundle>
+		<bundle dependency="true">mvn:org.apache.commons/com.springsource.org.apache.commons.pool/1.5.3</bundle>
+		<bundle dependency="true">mvn:org.apache.servicemix.specs/org.apache.servicemix.specs.jsr303-api-1.0.0/2.0.0</bundle>
+		<bundle dependency="true">mvn:org.jsoup/com.springsource.org.jsoup/1.5.2</bundle>
+		
+	        <bundle>mvn:org.hibernate.common/com.springsource.org.hibernate.annotations.common/4.1.0.Final</bundle>
+	        <bundle>mvn:org.hibernate/com.springsource.org.hibernate.ejb/4.1.0.Final</bundle>
+	        <bundle>mvn:org.hibernate/com.springsource.org.hibernate/4.1.0.Final</bundle>
+		<bundle>mvn:org.hibernate/com.springsource.org.hibernate/4.1.0.Final</bundle>
+		<bundle>mvn:org.hibernate/com.springsource.org.hibernate.core/4.1.0.Final</bundle>
+		<bundle>mvn:org.hibernate/com.springsource.org.hibernate.validator/4.2.0.Final</bundle>
+        
+	        <bundle>mvn:org.apache.commons/com.springsource.org.apache.commons.dbcp/1.2.2.osgi</bundle>
+	</feature>
+	<feature name="spring-framework" version="3.1.1.RELEASE">
+	        <bundle dependency="true">mvn:org.apache.commons/com.springsource.org.apache.commons.logging/1.1.1</bundle>
+	        <bundle dependency="true">mvn:javax.jms/com.springsource.javax.jms/1.1.0</bundle>
+	        <!-- <bundle dependency="true">mvn:javax.xml.stream/com.springsource.javax.xml.stream/1.0.1</bundle>-->
+	        <bundle dependency="true">mvn:javax.servlet/javax.servlet/3.0.0.v201103241009</bundle>
+	        <bundle dependency="true">mvn:javax.portlet/com.springsource.javax.portlet/2.0.0.v20110525</bundle>
+
+	        <bundle>mvn:org.springframework/org.springframework.aop/3.1.1.RELEASE</bundle>
+	        <bundle>mvn:org.springframework/org.springframework.asm/3.1.1.RELEASE</bundle>
+	        <bundle>mvn:org.springframework/org.springframework.aspects/3.1.1.RELEASE</bundle>
+	        <bundle>mvn:org.springframework/org.springframework.beans/3.1.1.RELEASE</bundle>
+	        <bundle>mvn:org.springframework/org.springframework.context/3.1.1.RELEASE</bundle>
+	        <bundle>mvn:org.springframework/org.springframework.context.support/3.1.1.RELEASE</bundle>
+	        <bundle>mvn:org.springframework/org.springframework.core/3.1.1.RELEASE</bundle>
+	        <bundle>mvn:org.springframework/org.springframework.expression/3.1.1.RELEASE</bundle>
+	        <bundle>mvn:org.springframework/org.springframework.jdbc/3.1.1.RELEASE</bundle>
+	        <bundle>mvn:org.springframework/org.springframework.orm/3.1.1.RELEASE</bundle>
+	        <bundle>mvn:org.springframework/org.springframework.oxm/3.1.1.RELEASE</bundle>
+	        <bundle>mvn:org.springframework/org.springframework.transaction/3.1.1.RELEASE</bundle>
+	        <bundle>mvn:org.springframework/org.springframework.web/3.1.1.RELEASE</bundle>
+	        <bundle>mvn:org.springframework/org.springframework.web.servlet/3.1.1.RELEASE</bundle>
+	        <bundle>mvn:org.springframework/org.springframework.web.portlet/3.1.1.RELEASE</bundle>
+	        <bundle>mvn:org.aopalliance/com.springsource.org.aopalliance/1.0.0</bundle>
+
+	</feature>	
+	<feature name="jpa-hibernate3" version="3.4.0.GA-A">
+	        <bundle dependency="true">mvn:org.antlr/com.springsource.antlr/2.7.7</bundle>
+	        <bundle dependency="true">mvn:org.jboss.javassist/com.springsource.javassist/3.15.0.GA</bundle>
+	        <bundle dependency="true">mvn:net.sourceforge.cglib/com.springsource.net.sf.cglib/2.2.0</bundle>
+	        <bundle dependency="true">mvn:org.dom4j/com.springsource.org.dom4j/1.6.1</bundle>
+	        <bundle dependency="true">mvn:org.objectweb.asm/com.springsource.org.objectweb.asm/1.5.3</bundle>
+
+	        <bundle>mvn:org.hibernate/com.springsource.org.hibernate.annotations.common/3.3.0.ga</bundle>
+	        <bundle>mvn:org.hibernate/com.springsource.org.hibernate.annotations/3.4.0.GA-A</bundle>
+	        <bundle>mvn:org.hibernate/com.springsource.org.hibernate.ejb/3.4.0.GA-A</bundle>
+	        <bundle>mvn:org.hibernate/com.springsource.org.hibernate/3.3.2.GA</bundle>
+        
+	        <bundle>mvn:org.apache.commons/com.springsource.org.apache.commons.dbcp/1.2.2.osgi</bundle>
+	</feature>
+    
+
+	<feature name="jdbc-drivers-mysql">
+	        <bundle>mvn:mysql/mysql-connector-java/5.1.18</bundle>
+	</feature>
+
+	<feature name="servlet-api-2.5" version="2.5">
+                <bundle>mvn:javax.servlet/com.springsource.javax.servlet/2.5.0</bundle>
+        </feature>
+
+</features>

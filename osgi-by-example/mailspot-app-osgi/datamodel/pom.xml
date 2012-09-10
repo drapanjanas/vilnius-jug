@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>datamodel</artifactId>
-	<packaging>jar</packaging>
+	<packaging>bundle</packaging>
 	<name>mailspot-app-osgi-datamodel</name>
 
 	<parent>
@@ -13,44 +13,23 @@
 	
 	<dependencies>
 
-
 		<!-- Bean Validation Dependencies -->
-
 		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<scope>compile</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<scope>compile</scope>
+    		<groupId>org.hibernate</groupId>
+    		<artifactId>com.springsource.org.hibernate.validator</artifactId>
 		</dependency>
 
 		<!-- JPA Persistence Dependencies -->
 
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<scope>compile</scope>
+    		<groupId>org.hibernate</groupId>
+    		<artifactId>com.springsource.org.hibernate.ejb</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.6</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<scope>compile</scope>
+    		<groupId>javax.persistence</groupId>
+    		<artifactId>com.springsource.javax.persistence</artifactId>
+    		<scope>compile</scope>
 		</dependency>
 		
 		<dependency>
@@ -58,10 +37,10 @@
 			<artifactId>commons-collections</artifactId>
 		</dependency>
 		
-				<dependency>
-		<groupId>com.google.guava</groupId>
-	<artifactId>guava</artifactId>
-	</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
 
 		<!-- Spring Dependencies -->
 
@@ -96,14 +75,11 @@
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
-			<type>jar</type>
-			<scope>compile</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>commons-pool</groupId>
 			<artifactId>commons-pool</artifactId>
-			<type>jar</type>
-			<scope>compile</scope>
 		</dependency>
 
 		<!-- Test Dependencies -->
@@ -143,8 +119,28 @@
 			</exclusions>
 			<scope>runtime</scope>
 		</dependency>
-
-
 	</dependencies>
-
+	
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>2.3.6</version>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+						<Export-Package>
+							lt.jug.vilnius.osgi.example.app.dao,
+							lt.jug.vilnius.osgi.example.app.model,
+							lt.jug.vilnius.osgi.example.app.dto
+						</Export-Package>
+						<Private-Package>lt.jug.vilnius.osgi.example.app.dao.impl</Private-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

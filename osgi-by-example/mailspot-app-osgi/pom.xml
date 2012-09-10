@@ -12,6 +12,7 @@
 	    <module>datamodel</module>
 	    <module>service</module>
 	    <module>ws</module>
+	    <module>features</module>
 	</modules>
 	
 	<properties>
@@ -37,19 +38,17 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>4.3.0.Final</version>
-			<scope>compile</scope>
+    		<groupId>org.hibernate</groupId>
+    		<artifactId>com.springsource.org.hibernate.validator</artifactId>
+    		<version>4.2.0.Final</version>
 		</dependency>
 
 		<!-- JPA Persistence Dependencies -->
 
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<version>4.1.7.Final</version>
-			<scope>compile</scope>
+    		<groupId>org.hibernate</groupId>
+    		<artifactId>com.springsource.org.hibernate.ejb</artifactId>
+    		<version>4.1.0.Final</version>
 		</dependency>
 
 		<dependency>
@@ -59,10 +58,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<version>1.0.0.Final</version>
-			<scope>compile</scope>
+    		<groupId>javax.persistence</groupId>
+    		<artifactId>com.springsource.javax.persistence</artifactId>
+    		<version>2.0.0</version>
 		</dependency>
 
 		<dependency>
@@ -73,15 +71,15 @@
         
         <!-- CXF -->    
 		<dependency>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-rt-frontend-jaxws</artifactId>
-				<version>${cxf.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-rt-transports-http</artifactId>
-				<version>${cxf.version}</version>
-			</dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
 		<!-- Spring Dependencies -->
 
 		<dependency>
@@ -129,23 +127,21 @@
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
-			<version>20030825.184428</version>
-			<type>jar</type>
-			<scope>compile</scope>
+			<version>1.4</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-pool</groupId>
 			<artifactId>commons-pool</artifactId>
-			<version>20030825.183949</version>
+			<version>1.5.4</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
-		<groupId>com.google.guava</groupId>
-	<artifactId>guava</artifactId>
-	<version>13.0</version>
-</dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>13.0</version>
+		</dependency>
 		
 		
 		<!-- View Dependencies -->
@@ -247,6 +243,18 @@
 			<id>repository.jboss.org</id>
 			<name>JBoss Repository</name>
 			<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+		</repository>
+		
+		<repository>
+			<id>com.springsource.repository.bundles.release</id>
+			<name>SpringSource Enterprise Bundle Repository - SpringSource Bundle Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/release</url>
+		</repository>
+
+		<repository>
+			<id>com.springsource.repository.bundles.external</id>
+			<name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/external</url>
 		</repository>
 
 		<repository>
