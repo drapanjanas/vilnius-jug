@@ -13,6 +13,7 @@ import lt.jug.vilnius.osgi.example.app.model.SenderMessage;
 import lt.jug.vilnius.osgi.example.app.model.SenderMessage.SenderStatus;
 import lt.jug.vilnius.osgi.example.app.services.InboxService;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +22,7 @@ import com.google.common.base.Preconditions;
 
 @Service("inboxService")
 public class InboxServiceImpl implements InboxService {
-
+	
 	@Autowired
 	private InboxDao inboxDao;
 	
