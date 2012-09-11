@@ -13,13 +13,13 @@
 	
 	<dependencies>
    		<dependency>
-	        <groupId>lt.jug.vilnius.osgi</groupId>
+	        <groupId>lt.jug.vilnius.mailspot.jse</groupId>
 	        <artifactId>services</artifactId>
 	        <version>${project.version}</version>
 	    </dependency>		
 	    
    		<dependency>
-	        <groupId>lt.jug.vilnius.osgi</groupId>
+	        <groupId>lt.jug.vilnius.mailspot.jse</groupId>
 	        <artifactId>datamodel</artifactId>
 	        <version>${project.version}</version>
 	    </dependency>
