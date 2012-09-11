@@ -16,6 +16,7 @@
         <property name="packagesToScan" value="lt.jug.vilnius.osgi.example.app.model"/>
         <property name="hibernateProperties">
             <props>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="show_sql">true</prop>
             </props>
